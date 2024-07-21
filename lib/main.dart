@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:speech_therapy/presentation/get_started.dart';
+import 'package:speech_therapy/presentation/homepage.dart';
 import 'package:speech_therapy/presentation/navigation_bar.dart';
+import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/words_screen.dart';
 import 'package:speech_therapy/routes/routes.dart';
 
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home:WordsScreen(),
+          home:SentenceScreen(),
           onGenerateRoute: Routes.onGenerateRoute,
         );
       },

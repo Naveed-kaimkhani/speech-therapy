@@ -148,22 +148,6 @@ class _homePageState extends State<homePage> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          // tutorWidget(
-                          //     Images.thinking,
-                          //     "Words",
-                          //     "Daily word learning is fun.",
-                          //     "1-100",
-                          //     "",
-                          //     Styling.lightBlue.withOpacity(0.5)),
-                          // tutorWidget(
-                          //     Images.sent,
-                          //     "Sentences",
-                          //     "Improve language fluency daily",
-                          //     "1-10",
-                          //     "",
-                          //     const Color.fromARGB(255, 206, 246, 214)),
-                          // tutorWidget(Images.hospital, "Hospital", "Hospital",
-                          //     "1-100", "", const Color.fromARGB(255, 245, 232, 203)),
                           AnimatedOpacity(
                             opacity: _visible ? 1.0 : 0.0,
                             duration: const Duration(seconds: 1),
