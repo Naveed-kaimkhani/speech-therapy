@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:speech_therapy/presentation/Login/login_screen.dart';
 import 'package:speech_therapy/presentation/navigation_bar.dart';
 import 'package:speech_therapy/routes/routes_name.dart';
 import 'package:speech_therapy/style/styling.dart';
@@ -44,7 +45,7 @@ class GetStarted extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.4,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('asset/images/splash.png'),
+                      image: AssetImage('assets/images/splash.png'),
                       fit: BoxFit.contain)),
             ),
             Expanded(
@@ -90,7 +91,7 @@ class GetStarted extends StatelessWidget {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => NavigationPage()),
+                                  builder: (context) => LoginScreen()),
                             );
                           },
                           icon: const Icon(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:speech_therapy/routes/routes_name.dart';
 import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
@@ -67,7 +68,7 @@ class _homePageState extends State<homePage> {
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("asset/images/searchBg.png"))),
+                    image: AssetImage("assets/images/searchBg.png"))),
             child: Container(
               padding: EdgeInsets.all(20.w),
               child: Column(
@@ -78,7 +79,7 @@ class _homePageState extends State<homePage> {
                     style: TextStyle(fontSize: 16.sp, fontFamily: 'circe'),
                   ),
                   Text(
-                    "Fiza Khawaja",
+                    "naveed",
                     style: TextStyle(
                         fontSize: 16.sp,
                         fontFamily: 'circe',
@@ -108,8 +109,7 @@ class _homePageState extends State<homePage> {
                             style:
                                 TextStyle(fontSize: 16.sp, fontFamily: 'circe'),
                             decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Search for Courses or Tutors"),
+                                border: InputBorder.none, hintText: "Search "),
                           ),
                         ),
                       ],
@@ -158,6 +158,7 @@ class _homePageState extends State<homePage> {
                               "1-100",
                               "",
                               Styling.lightBlue.withOpacity(0.5),
+                            RoutesName.wordScreen
                             ),
                           ),
                           AnimatedOpacity(
@@ -170,6 +171,7 @@ class _homePageState extends State<homePage> {
                               "1-10",
                               "",
                               const Color.fromARGB(255, 206, 246, 214),
+                              RoutesName.sentenceScreen
                             ),
                           ),
                           AnimatedOpacity(
@@ -182,6 +184,7 @@ class _homePageState extends State<homePage> {
                               "1-100",
                               "",
                               const Color.fromARGB(255, 245, 232, 203),
+                              RoutesName.wordScreen,
                             ),
                           ),
                         ],
@@ -198,12 +201,14 @@ class _homePageState extends State<homePage> {
   }
 
   InkWell tutorWidget(String img, String name, String subj, String grade,
-      String price, Color color) {
+      String price, Color color, String route) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, route);
+      },
       child: Container(
         margin: EdgeInsets.only(top: 20.h),
-        height: 140.h,
+        height: 150.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(30.r)),
           color: color,
@@ -221,7 +226,7 @@ class _homePageState extends State<homePage> {
                       width: 150.w,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('asset/images/iconBgNew.png'),
+                              image: AssetImage('assets/images/iconBgNew.png'),
                               fit: BoxFit.contain)),
                     ),
                   ),

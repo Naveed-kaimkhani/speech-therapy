@@ -12,8 +12,8 @@ class SentenceScreen extends StatelessWidget {
     Word('I’m eating', 'assets/images/eat.png'),
     Word('I’m playing', 'assets/images/playing.png'),
     Word('I’m Drinking', 'assets/images/drinking.png'),
-    Word('I’m Drinking', 'assets/images/drinking.png'),
-    Word('I’m Drinking', 'assets/images/drinking.png'),
+    Word('I’m Sleeping', 'assets/images/sleep.png'),
+    Word('I’m Running', 'assets/images/running.png'),
   ];
 
   @override
@@ -157,6 +157,8 @@ class _WordCardState extends State<WordCard>
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.r),
         ),
+        elevation: 9.0, // Adding elevation to create shadow
+        shadowColor: Colors.black54, // Optional: Customizing shadow color
         child: Column(
           children: [
             ClipPath(

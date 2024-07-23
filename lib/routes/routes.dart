@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:speech_therapy/presentation/get_started.dart';
 import 'package:speech_therapy/presentation/homepage.dart';
+import 'package:speech_therapy/presentation/sentence.dart';
+import 'package:speech_therapy/presentation/words_screen.dart';
 import 'package:speech_therapy/routes/routes_name.dart';
 
 class Routes {
@@ -13,6 +15,12 @@ class Routes {
         
       case RoutesName.homePage:
         return _buildRoute( HomePage(), settings);
+        
+      case RoutesName.wordScreen:
+        return _buildRoute( WordsScreen(), settings);
+      
+      case RoutesName.sentenceScreen:
+        return _buildRoute( SentenceScreen(), settings);
       default:
         return _buildRoute(
             const Scaffold(

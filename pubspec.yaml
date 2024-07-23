@@ -37,6 +37,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   google_nav_bar: ^5.0.6
   google_fonts: ^6.2.1
+  flutter_svg:
   lottie:
 dev_dependencies:
   flutter_test:

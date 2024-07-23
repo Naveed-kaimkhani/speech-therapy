@@ -76,11 +76,11 @@ class WordsScreen extends StatelessWidget {
             SizedBox(
                 height: 4.h), // Space between the container and the GridView
             Text(
-              '  Explore Sentences',
+              '  Explore Words',
               style: GoogleFonts.aBeeZee(
                   textStyle: TextStyle(
                       color: Colors.black,
-                      fontSize: 22.sp,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold)),
             ),
             Expanded(
