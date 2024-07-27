@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home:NotePad(),
+          home:homePage(),
           onGenerateRoute: Routes.onGenerateRoute,
         );
       },

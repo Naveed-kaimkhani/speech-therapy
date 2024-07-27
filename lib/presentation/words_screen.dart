@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:speech_therapy/presentation/widgets/word_dialog.dart';
 import 'package:speech_therapy/style/custom_text_style.dart';
 import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
@@ -12,7 +13,6 @@ class WordsScreen extends StatelessWidget {
     Word('Please', 'assets/images/please.png'),
     Word('Eat', 'assets/images/eat.png'),
     Word('Sleep', 'assets/images/sleep.png'),
-
   ];
 
   @override
@@ -45,7 +45,9 @@ class WordsScreen extends StatelessWidget {
                 // Adjust height as needed
                 child: Stack(children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       icon: const Icon(
                         Icons.arrow_back_ios_new,
                         color: Colors.white,
@@ -168,6 +170,8 @@ class _WordCardState extends State<WordCard>
             Expanded(
               child: InkWell(
                 onTap: () {
+                  showWordDialog(
+                      context, widget.word.imageUrl, widget.word.name);
                   // Add any additional interactions here
                   // For example, play a sound or show a popup
                 },

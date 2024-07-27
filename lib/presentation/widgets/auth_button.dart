@@ -17,8 +17,8 @@ class AuthButton extends StatelessWidget {
     return InkWell(
       onTap: func,
       child: Container(
-        width: 321.w,
-        height: 67.h,
+        width: 121.w,
+        height: 47.h,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(14.r),
@@ -27,7 +27,7 @@ class AuthButton extends StatelessWidget {
           child: Text(
             text!,
             style: TextStyle(
-                fontSize: 25.sp,
+                fontSize: 15.sp,
                 fontWeight: FontWeight.w500,
                 color: Colors.white),
           ),
