@@ -3,19 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:speech_therapy/model/word.dart';
-import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/widgets/word_card.dart';
-import 'package:speech_therapy/presentation/widgets/word_dialog.dart';
-import 'package:speech_therapy/style/custom_text_style.dart';
 import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
-class WordsScreen extends StatelessWidget {
+class FruitScreen extends StatelessWidget {
   final List<Word> words = [
-    Word('Thank you', 'assets/images/thank.png'),
-    Word('Please', 'assets/images/please.png'),
-    Word('Eat', 'assets/images/eat.png'),
-    Word('Sleep', 'assets/images/sleep.png'),
+    Word('Mango', 'assets/images/mango.png'),
+    Word('Banana', 'assets/images/banana.png'),
+    Word('Apple', 'assets/images/apple.png'),
+    Word('Orange', 'assets/images/orange.png'),
   ];
 
   @override
@@ -67,11 +64,11 @@ class WordsScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 12.w, top: 40.h),
                     child: Text(
-                      '  Expand Your World,\n  One Word at a Time.',
+                      '  Learning fruit and vegetable names\n opens a world of flavors and nutrition.',
                       style: GoogleFonts.lora(
                           textStyle: TextStyle(
                               color: Colors.white,
-                              fontSize: 16.sp,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.bold)),
                     ),
                   ),

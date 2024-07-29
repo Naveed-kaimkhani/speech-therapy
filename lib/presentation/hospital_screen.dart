@@ -1,115 +1,162 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+import 'package:speech_therapy/model/word.dart';
+import 'package:speech_therapy/presentation/sentence.dart';
+import 'package:speech_therapy/presentation/widgets/word_card.dart';
+import 'package:speech_therapy/presentation/widgets/word_dialog.dart';
+import 'package:speech_therapy/style/custom_text_style.dart';
+import 'package:speech_therapy/style/images.dart';
+import 'package:speech_therapy/style/styling.dart';
 
 class HospitalScreen extends StatelessWidget {
-  final List<Hospital> Hospitals = [
-    Hospital('Fever', 'asset/images/thank.png'),
-    Hospital('First Aid ', 'asset/images/sleep.png'),
-    Hospital('Doctor', 'asset/images/eat.png'),
-    Hospital('Medicines', 'asset/images/sleep.png'),
+  final List<Word> words = [
+    Word('Fever', 'assets/images/fever.png'),
+    Word('First Aid ', 'assets/images/firstaid.png'),
+    Word('Doctor', 'assets/images/dr.png'),
+    Word('Medicine', 'assets/images/medicine.png'),
     // Add more Hospitals here
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hospitals'),
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16.w,
-            mainAxisSpacing: 16.h,
-          ),
-          itemCount: Hospitals.length,
-          itemBuilder: (context, index) {
-            return HospitalCard(hospital: Hospitals[index]);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class Hospital {
-  final String name;
-  final String imageUrl;
-
-  Hospital(this.name, this.imageUrl);
-}
-
-class HospitalCard extends StatefulWidget {
-  final Hospital hospital;
-
-  HospitalCard({required this.hospital});
-
-  @override
-  _HospitalCardState createState() => _HospitalCardState();
-}
-
-class _HospitalCardState extends State<HospitalCard>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: Duration(seconds: 1),
-      vsync: this,
-    );
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeIn,
-    );
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: _animation,
-      child: Card(
-        color: Colors.lightBlue.withOpacity(0.5),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.r),
-        ),
-        child: InkWell(
-          onTap: () {
-            // Add any additional interactions here
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                widget.hospital.imageUrl,
-                height: 60.h,
-                width: 60.w,
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                widget.hospital.name,
-                style: TextStyle(
-                  fontSize: 50.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Styling.lightBlue,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipPath(
+              clipper: LowerCurveClipper(),
+              child: Container(
+                // color: Styling.darkBlue, // Adjust color as needed
+                width: double.infinity,
+                height: 130.h,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Styling.darkBlue,
+                      Styling.lightBlue
+                    ], // Define your gradient colors here
+                    begin: Alignment
+                        .topLeft, // Define the start point of the gradient
+                    end: Alignment
+                        .bottomRight, // Define the end point of the gradient
+                  ),
                 ),
+                // Adjust height as needed
+                child: Stack(children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
+                        color: Colors.white,
+                      )),
+                  Padding(
+                    padding: EdgeInsets.only(left: 220.w),
+                    child: Lottie.asset(
+                      Images.book,
+                      height: 180.w, // Adjust height as needed
+                      // width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 12.w, top: 40.h),
+                    child: Text(
+                      ' Understanding hospital vocabulary\n bridges the gap between patients and providers.',
+                      style: GoogleFonts.lora(
+                          textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ]),
               ),
-            ],
-          ),
+            ),
+            SizedBox(
+                height: 4.h), // Space between the container and the GridView
+            Text(
+              '  Explore Words',
+              style: GoogleFonts.aBeeZee(
+                  textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold)),
+            ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 2.w,
+                  mainAxisSpacing: 2.h,
+                ),
+                itemCount: words.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(4.w),
+                    child: WordCard(word: words[index]),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
+  }
+}
+
+class UpperCurveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height - 20.h);
+    var firstControlPoint = Offset(size.width / 4, size.height);
+    var firstEndPoint = Offset(size.width / 2, size.height - 20.h);
+    var secondControlPoint = Offset(size.width * 3 / 4, size.height - 40.h);
+    var secondEndPoint = Offset(size.width, size.height - 20.h);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
+  }
+}
+
+class LowerCurveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height - 20.h);
+    var firstControlPoint = Offset(size.width / 4, size.height - 40.h);
+    var firstEndPoint = Offset(size.width / 2, size.height - 20.h);
+    var secondControlPoint = Offset(size.width * 3 / 4, size.height);
+    var secondEndPoint = Offset(size.width, size.height - 20.h);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
   }
 }

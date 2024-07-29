@@ -40,6 +40,7 @@ dependencies:
   flutter_svg:
   flutter_tts:
   lottie:
+  provider:
 dev_dependencies:
   flutter_test:
     sdk: flutter
