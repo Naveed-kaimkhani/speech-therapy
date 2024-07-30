@@ -64,7 +64,7 @@ class FruitScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 12.w, top: 40.h),
                     child: Text(
-                      '  Learning fruit and vegetable names\n opens a world of flavors and nutrition.',
+                      ' Each Fruit Name we Learn is a Seed\n Planted in the Garden of our Vocabulary.',
                       style: GoogleFonts.lora(
                           textStyle: TextStyle(
                               color: Colors.white,

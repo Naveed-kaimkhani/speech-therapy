@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     mq = MediaQuery.of(context).size;
     // List<GraphDots> points = [GraphDots(x: 1, y: 2)];
     return ScreenUtilInit(
-      designSize: const Size(360, 690),
+      designSize: const Size(360, 690), 
       builder: (context, child) {
         return MultiProvider(
           providers: [
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home:  FruitScreen(),
+            home: HomePage(),
             onGenerateRoute: Routes.onGenerateRoute,
           ),
         );

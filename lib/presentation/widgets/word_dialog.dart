@@ -9,7 +9,8 @@ import 'package:speech_therapy/style/styling.dart';
 
 void showWordDialog(BuildContext context, String url, String word) {
   final FlutterTts _flutterTts = FlutterTts();
-  final LanguageProvider languageProvider = Provider.of<LanguageProvider>(context, listen: false);
+  final LanguageProvider languageProvider =
+      Provider.of<LanguageProvider>(context, listen: false);
 
   Future<void> _speak(String text) async {
     await _flutterTts.setLanguage(languageProvider.language);
@@ -27,6 +28,7 @@ void showWordDialog(BuildContext context, String url, String word) {
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               url,
@@ -38,28 +40,27 @@ void showWordDialog(BuildContext context, String url, String word) {
               word,
               style: CustomTextStyle.font_20,
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 18.h),
             IconButton(
               icon: Icon(
                 Icons.play_circle_outline_sharp,
                 color: Styling.darkBlue,
-                size: 30.w,
+                size: 40.w,
               ),
               onPressed: () {
                 _speak(word);
               },
             ),
+            SizedBox(height: 10.h),
+            AuthButton(
+              text: "Close",
+              func: () {
+                Navigator.of(context).pop();
+              },
+              color: Styling.darkBlue,
+            ),
           ],
         ),
-        actions: [
-          AuthButton(
-            text: "Close",
-            func: () {
-              Navigator.of(context).pop();
-            },
-            color: Styling.darkBlue,
-          ),
-        ],
       );
     },
   );

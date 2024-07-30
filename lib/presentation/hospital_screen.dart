@@ -57,7 +57,7 @@ class HospitalScreen extends StatelessWidget {
                         color: Colors.white,
                       )),
                   Padding(
-                    padding: EdgeInsets.only(left: 220.w),
+                    padding: EdgeInsets.only(left: 240.w),
                     child: Lottie.asset(
                       Images.book,
                       height: 180.w, // Adjust height as needed
@@ -66,13 +66,13 @@ class HospitalScreen extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 12.w, top: 40.h),
+                    padding: EdgeInsets.only(left: 10.w, top: 40.h),
                     child: Text(
-                      ' Understanding hospital vocabulary\n bridges the gap between patients and providers.',
+                      ' Understanding Hospital Vocabulary\n Bridges the Gap Btw Patients and Providers.',
                       style: GoogleFonts.lora(
                           textStyle: TextStyle(
                               color: Colors.white,
-                              fontSize: 10.sp,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.bold)),
                     ),
                   ),
@@ -86,7 +86,7 @@ class HospitalScreen extends StatelessWidget {
               style: GoogleFonts.aBeeZee(
                   textStyle: TextStyle(
                       color: Colors.black,
-                      fontSize: 16.sp,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold)),
             ),
             Expanded(

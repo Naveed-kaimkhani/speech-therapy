@@ -40,6 +40,7 @@ dependencies:
   flutter_svg:
   flutter_tts:
   lottie:
+  speech_to_text: ^6.6.2
   provider:
 dev_dependencies:
   flutter_test:

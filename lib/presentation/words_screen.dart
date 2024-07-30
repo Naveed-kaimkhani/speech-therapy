@@ -85,7 +85,7 @@ class WordsScreen extends StatelessWidget {
               style: GoogleFonts.aBeeZee(
                   textStyle: TextStyle(
                       color: Colors.black,
-                      fontSize: 16.sp,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold)),
             ),
             Expanded(

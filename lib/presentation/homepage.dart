@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:speech_therapy/fruits.dart';
+import 'package:speech_therapy/presentation/hospital_screen.dart';
+import 'package:speech_therapy/presentation/sentence.dart';
+import 'package:speech_therapy/presentation/words_screen.dart';
 import 'package:speech_therapy/routes/routes_name.dart';
 import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
@@ -79,7 +83,7 @@ class _homePageState extends State<homePage> {
                     style: TextStyle(fontSize: 16.sp, fontFamily: 'circe'),
                   ),
                   Text(
-                    "naveed",
+                    "Shiza",
                     style: TextStyle(
                         fontSize: 16.sp,
                         fontFamily: 'circe',
@@ -152,27 +156,25 @@ class _homePageState extends State<homePage> {
                             opacity: _visible ? 1.0 : 0.0,
                             duration: const Duration(seconds: 1),
                             child: tutorWidget(
-                              Images.thinking,
-                              "Words",
-                              "Daily word learning is fun.",
-                              "1-100",
-                              "",
-                              Styling.lightBlue.withOpacity(0.5),
-                            RoutesName.wordScreen
-                            ),
+                                Images.thinking,
+                                "Words",
+                                "Daily word learning is fun.",
+                                "1-100",
+                                "",
+                                Styling.lightBlue.withOpacity(0.5),
+                                WordsScreen()),
                           ),
                           AnimatedOpacity(
                             opacity: _visible ? 1.0 : 0.0,
                             duration: const Duration(seconds: 1),
                             child: tutorWidget(
-                              Images.sent,
-                              "Sentences",
-                              "Improve language fluency daily",
-                              "1-10",
-                              "",
-                              const Color.fromARGB(255, 206, 246, 214),
-                              RoutesName.sentenceScreen
-                            ),
+                                Images.sent,
+                                "Sentences",
+                                "Improve language fluency daily",
+                                "1-10",
+                                "",
+                                const Color.fromARGB(255, 206, 246, 214),
+                                SentenceScreen()),
                           ),
                           AnimatedOpacity(
                             opacity: _visible ? 1.0 : 0.0,
@@ -184,7 +186,20 @@ class _homePageState extends State<homePage> {
                               "1-100",
                               "",
                               const Color.fromARGB(255, 245, 232, 203),
-                              RoutesName.wordScreen,
+                              HospitalScreen(),
+                            ),
+                          ),
+                          AnimatedOpacity(
+                            opacity: _visible ? 1.0 : 0.0,
+                            duration: const Duration(seconds: 1),
+                            child: tutorWidget(
+                              Images.fruits,
+                              "Fruits",
+                              "Fruits",
+                              "1-100",
+                              "",
+                              Color.fromARGB(255, 224, 220, 235),
+                              FruitScreen(),
                             ),
                           ),
                         ],
@@ -201,10 +216,16 @@ class _homePageState extends State<homePage> {
   }
 
   InkWell tutorWidget(String img, String name, String subj, String grade,
-      String price, Color color, String route) {
+      String price, Color color, Widget route) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, route);
+        // Navigator.pushNamed(context, route);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => route),
+        );
+
+        // Navigator.pushNamed(context, routeName)
       },
       child: Container(
         margin: EdgeInsets.only(top: 20.h),
@@ -215,36 +236,34 @@ class _homePageState extends State<homePage> {
         ),
         child: Row(
           children: [
-            Container(
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(30.h)),
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius:
+                      BorderRadius.only(topLeft: Radius.circular(30.h)),
+                  child: Container(
+                    height: 125.h,
+                    width: 150.w,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/images/iconBgNew.png'),
+                            fit: BoxFit.contain)),
+                  ),
+                ),
+                Positioned(
+                  left: 4.w,
+                  child: Hero(
+                    tag: img,
                     child: Container(
-                      height: 125.h,
-                      width: 150.w,
-                      decoration: const BoxDecoration(
+                      width: 100.w,
+                      height: 120.h,
+                      decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/images/iconBgNew.png'),
-                              fit: BoxFit.contain)),
+                              image: AssetImage(img), fit: BoxFit.cover)),
                     ),
                   ),
-                  Positioned(
-                    left: 4.w,
-                    child: Hero(
-                      tag: img,
-                      child: Container(
-                        width: 100.w,
-                        height: 120.h,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(img), fit: BoxFit.cover)),
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
             Expanded(
               child: Container(

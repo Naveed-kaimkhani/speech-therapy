@@ -36,102 +36,107 @@ class _NotePadState extends State<NotePad> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Styling.lightBlue,
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Container(
-                height: 160.h,
-                decoration: BoxDecoration(
-                  color: Styling.darkBlue,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(34.r),
-                    bottomRight: Radius.circular(34.r),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Styling.lightBlue,
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                Container(
+                  height: 160.h,
+                  decoration: BoxDecoration(
+                    color: Styling.darkBlue,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(34.r),
+                      bottomRight: Radius.circular(34.r),
+                    ),
                   ),
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 12.w, top: 4.h),
-                        child: Text(
-                          'Start\nWriting\nToday',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.pacifico(
-                            textStyle: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SvgPicture.asset(
-                        Images.write,
-                        height: 150.h,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 16.h),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(16.w),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.all(20.w),
-                          decoration: BoxDecoration(
-                            color: Styling.darkBlue,
-                            borderRadius: BorderRadius.circular(20.r),
-                          ),
-                          child: SingleChildScrollView(
-                            child: TextField(
-                              controller: messageController,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                              cursorColor: Colors.white,
-                              maxLines: null,
-                              decoration: InputDecoration(
-                                hintText: "Start Writing...",
-                                hintStyle: TextStyle(color: Colors.white70),
-                                border: InputBorder.none,
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 12.w, top: 4.h),
+                          child: Text(
+                            'Start\nWriting\nToday',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.pacifico(
+                              textStyle: TextStyle(
+                                fontSize: 26.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        SvgPicture.asset(
+                          Images.write,
+                          height: 150.h,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              AuthButton(
-                text: "Convert",
-                func: () async {
-                  await _speak(messageController.text);
-                },
-                color: Styling.darkBlue,
-              ),
-            ],
-          ),
-          Positioned(
-            top: 160.h, // Adjust as needed
-            right: 8.w, // Adjust as needed
-            child: Hero(
-              tag: 'hero-tag',
-              child: Image.asset(
-                Images.bird, // Replace with your image path
-                width: 100.w, // Adjust size as needed
-                height: 100.h, // Adjust size as needed
+                SizedBox(height: 16.h),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.w),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.all(20.w),
+                            decoration: BoxDecoration(
+                              color: Styling.darkBlue,
+                              borderRadius: BorderRadius.circular(20.r),
+                            ),
+                            child: SingleChildScrollView(
+                              child: TextField(
+                                controller: messageController,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                                cursorColor: Colors.white,
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                  hintText: "Start Writing...",
+                                  hintStyle: TextStyle(color: Colors.white70),
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                AuthButton(
+                  text: "Convert",
+                  func: () async {
+                    await _speak(messageController.text);
+                  },
+                  color: Styling.darkBlue,
+                ),
+                SizedBox(
+                  height: 14.h,
+                )
+              ],
+            ),
+            Positioned(
+              top: 160.h, // Adjust as needed
+              right: 8.w, // Adjust as needed
+              child: Hero(
+                tag: 'hero-tag',
+                child: Image.asset(
+                  Images.bird, // Replace with your image path
+                  width: 100.w, // Adjust size as needed
+                  height: 100.h, // Adjust size as needed
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

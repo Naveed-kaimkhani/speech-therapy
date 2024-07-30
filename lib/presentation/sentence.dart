@@ -112,7 +112,6 @@ class SentenceScreen extends StatelessWidget {
   }
 }
 
-
 class UpperCurveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
