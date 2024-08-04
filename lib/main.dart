@@ -9,6 +9,7 @@ import 'package:speech_therapy/presentation/homepage.dart';
 import 'package:speech_therapy/presentation/hospital_screen.dart';
 import 'package:speech_therapy/presentation/navigation_bar.dart';
 import 'package:speech_therapy/presentation/notepad.dart';
+import 'package:speech_therapy/presentation/progress_track.dart';
 import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/words_screen.dart';
 import 'package:speech_therapy/provider/language_provider.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: HomePage(),
+            home:ProgressTrack(),
             onGenerateRoute: Routes.onGenerateRoute,
           ),
         );

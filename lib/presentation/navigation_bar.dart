@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:speech_therapy/presentation/homepage.dart';
+import 'package:speech_therapy/presentation/notepad.dart';
 import 'package:speech_therapy/style/styling.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
   List pages = [
     HomePage(),
-    HomePage(),
+    NotePad(),
     HomePage(),
     HomePage(),
   ];

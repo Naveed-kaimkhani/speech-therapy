@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speech_therapy/style/styling.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
@@ -15,6 +16,7 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Styling.lightBlue,
       body: SizedBox(
         width: double.infinity,
         height: MediaQuery.of(context).size.height,

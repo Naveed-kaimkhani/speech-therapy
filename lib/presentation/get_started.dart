@@ -47,7 +47,7 @@ class GetStarted extends StatelessWidget {
                   image: DecorationImage(
                       image: AssetImage('assets/images/splash.png'),
                       fit: BoxFit.contain)),
-            ),
+            ), 
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

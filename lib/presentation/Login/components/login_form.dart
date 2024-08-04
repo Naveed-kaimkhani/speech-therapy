@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:speech_therapy/presentation/navigation_bar.dart';
 import 'package:speech_therapy/presentation/widgets/already_account.dart';
+import 'package:speech_therapy/presentation/widgets/auth_button.dart';
 import 'package:speech_therapy/style/styling.dart';
 
 import '../../Signup/signup_screen.dart';
@@ -21,7 +22,7 @@ class LoginForm extends StatelessWidget {
             textInputAction: TextInputAction.next,
             cursorColor: Styling.darkBlue,
             onSaved: (email) {},
-            decoration:  InputDecoration(
+            decoration: InputDecoration(
               hintText: "Your email",
               prefixIcon: Padding(
                 padding: EdgeInsets.all(16.w),
@@ -30,12 +31,12 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.symmetric(vertical: 16.w),
+            padding: EdgeInsets.symmetric(vertical: 16.w),
             child: TextFormField(
               textInputAction: TextInputAction.done,
               obscureText: true,
-              cursorColor: Styling.primaryColor,
-              decoration:  InputDecoration(
+              cursorColor: Styling.darkBlue,
+              decoration: InputDecoration(
                 hintText: "Your password",
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(16.w),
@@ -45,20 +46,19 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-               Navigator.push(
+          AuthButton(
+            text: "lOGIN",
+            func: () async {
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return  NavigationPage();
+                    return NavigationPage();
                   },
                 ),
               );
             },
-            child: Text(
-              "Login".toUpperCase(),
-            ),
+            color: Styling.darkBlue,
           ),
           SizedBox(height: 16.h),
           AlreadyHaveAnAccountCheck(
@@ -67,7 +67,7 @@ class LoginForm extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return  NavigationPage();
+                    return SignUpScreen();
                   },
                 ),
               );

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ProgressTrack extends StatefulWidget {
+  const ProgressTrack({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ProgressTrack> createState() => _ProgressTrackState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ProgressTrackState extends State<ProgressTrack> {
   final SpeechToText _speechToText = SpeechToText();
 
   bool _speechEnabled = false;
