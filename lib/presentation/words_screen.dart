@@ -99,7 +99,7 @@ class WordsScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(4.w),
-                    child: WordCard(word: words[index]),
+                    child: WordCard(word: words[index],listen: true,),
                   );
                 },
               ),

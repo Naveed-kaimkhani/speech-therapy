@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:speech_therapy/presentation/homepage.dart';
 import 'package:speech_therapy/presentation/notepad.dart';
+import 'package:speech_therapy/presentation/progress_track.dart';
 import 'package:speech_therapy/style/styling.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _NavigationPageState extends State<NavigationPage> {
   List pages = [
     HomePage(),
     NotePad(),
-    HomePage(),
+    ProgressTrack(),
     HomePage(),
   ];
   int currentindex = 0;
@@ -45,11 +46,11 @@ class _NavigationPageState extends State<NavigationPage> {
               text: "Home",
             ),
             GButton(
-              icon: Icons.note,
+              icon: Icons.note_alt_rounded,
               text: "Notepad",
             ),
             GButton(
-              icon: Icons.hourglass_bottom,
+              icon: Icons.hourglass_bottom_rounded,
               text: "Progress",
             ),
             GButton(

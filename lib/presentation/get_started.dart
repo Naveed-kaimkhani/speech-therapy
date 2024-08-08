@@ -21,7 +21,7 @@ class GetStarted extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Speech Therapy",
+                    "Speach Buddy",
                     style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -47,7 +47,7 @@ class GetStarted extends StatelessWidget {
                   image: DecorationImage(
                       image: AssetImage('assets/images/splash.png'),
                       fit: BoxFit.contain)),
-            ), 
+            ),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -65,7 +65,7 @@ class GetStarted extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    "Book Filtered Top Rated Professional \nTutors from the comfort \nOf your home in just a few clicks",
+                    "Design and Development of Speech Therapist Mobile App for Children with Speech Impediment",
                     style: TextStyle(
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w300,

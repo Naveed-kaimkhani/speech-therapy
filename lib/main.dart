@@ -12,9 +12,12 @@ import 'package:speech_therapy/presentation/notepad.dart';
 import 'package:speech_therapy/presentation/progress_track.dart';
 import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/urdu_translation.dart';
+import 'package:speech_therapy/presentation/word_pronun_check.dart';
 import 'package:speech_therapy/presentation/words_screen.dart';
 import 'package:speech_therapy/provider/language_provider.dart';
 import 'package:speech_therapy/routes/routes.dart';
+
+import 'presentation/word_speak.dart';
 
 late Size mq;
 
@@ -39,12 +42,12 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (_) => LanguageProvider()),
           ],
           child: MaterialApp(
-            title: 'Speech Therapy',
+            title: 'Speach Buddy',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home:UrduTranslation(),
+            home:WordSpeak(),
             onGenerateRoute: Routes.onGenerateRoute,
           ),
         );

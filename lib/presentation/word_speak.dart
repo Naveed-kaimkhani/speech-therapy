@@ -3,16 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:speech_therapy/model/word.dart';
+import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/widgets/word_card.dart';
+import 'package:speech_therapy/presentation/widgets/word_dialog.dart';
+import 'package:speech_therapy/style/custom_text_style.dart';
 import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
-class FruitScreen extends StatelessWidget {
+class WordSpeak extends StatelessWidget {
   final List<Word> words = [
-    Word('Mango', 'assets/images/mango.png'),
-    Word('Banana', 'assets/images/banana.png'),
-    Word('Apple', 'assets/images/apple.png'),
-    Word('Orange', 'assets/images/orange.png'),
+    Word('Thank you', 'assets/images/thank.png'),
+    Word('Please', 'assets/images/please.png'),
+    Word('Eat', 'assets/images/eat.png'),
+    Word('Sleep', 'assets/images/sleep.png'),
   ];
 
   @override
@@ -64,11 +67,11 @@ class FruitScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 12.w, top: 40.h),
                     child: Text(
-                      ' Each Fruit Name we Learn is a Seed\n Planted in the Garden of our Vocabulary.',
+                      '  Test Your Learning.',
                       style: GoogleFonts.lora(
                           textStyle: TextStyle(
                               color: Colors.white,
-                              fontSize: 10.sp,
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.bold)),
                     ),
                   ),
@@ -78,11 +81,11 @@ class FruitScreen extends StatelessWidget {
             SizedBox(
                 height: 4.h), // Space between the container and the GridView
             Text(
-              '  Explore Words',
+              '  Speach Recognition',
               style: GoogleFonts.aBeeZee(
                   textStyle: TextStyle(
                       color: Colors.black,
-                      fontSize: 16.sp,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold)),
             ),
             Expanded(
@@ -96,7 +99,7 @@ class FruitScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(4.w),
-                    child: WordCard(word: words[index],listen: true,),
+                    child: WordCard(word: words[index],listen: false,),
                   );
                 },
               ),

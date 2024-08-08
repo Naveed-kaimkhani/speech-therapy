@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:speech_therapy/style/styling.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 class ProgressTrack extends StatefulWidget {
@@ -48,12 +52,26 @@ class _ProgressTrackState extends State<ProgressTrack> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Styling.lightBlue,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.white,
+            )),
+        centerTitle: true,
+        backgroundColor: Styling.darkBlue,
         title: Text(
-          'Speech Demo',
-          style: TextStyle(
-            color: Colors.white,
+          'English Conversion',
+          style: GoogleFonts.pacifico(
+            textStyle: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
@@ -91,7 +109,7 @@ class _ProgressTrackState extends State<ProgressTrack> {
                 child: Text(
                   "Confidence: ${(_confidenceLevel * 100).toStringAsFixed(1)}%",
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 30.sp,
                     fontWeight: FontWeight.w200,
                   ),
                 ),
@@ -102,11 +120,11 @@ class _ProgressTrackState extends State<ProgressTrack> {
       floatingActionButton: FloatingActionButton(
         onPressed: _speechToText.isListening ? _stopListening : _startListening,
         tooltip: 'Listen',
+        backgroundColor: Styling.darkBlue,
         child: Icon(
           _speechToText.isNotListening ? Icons.mic_off : Icons.mic,
           color: Colors.white,
         ),
-        backgroundColor: Colors.red,
       ),
     );
   }

@@ -4,13 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:speech_therapy/model/word.dart';
 import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/widgets/word_dialog.dart';
+import 'package:speech_therapy/presentation/widgets/word_speak_dialogue.dart';
+import 'package:speech_therapy/presentation/word_pronun_check.dart';
 import 'package:speech_therapy/style/custom_text_style.dart';
 import 'package:speech_therapy/style/styling.dart';
 
 class WordCard extends StatefulWidget {
+  // final bool speak;
+  final bool listen;
   final Word word;
 
-  WordCard({required this.word});
+  WordCard({required this.word, required this.listen});
 
   @override
   _WordCardState createState() => _WordCardState();
@@ -62,10 +66,22 @@ class _WordCardState extends State<WordCard>
             Expanded(
               child: InkWell(
                 onTap: () {
-                  showWordDialog(
+                if (widget.listen) {
+                    showWordDialog(
                       context, widget.word.imageUrl, widget.word.name);
-                  // Add any additional interactions here
-                  // For example, play a sound or show a popup
+                
+                }else{
+                  // showSpeakDialogue(context,widget.word.name);
+                  
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WordProgress(
+                                        targetWord: widget.word.name,
+                                      )),
+                            );
+                  //navigate to word pronouce screen
+                }
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
