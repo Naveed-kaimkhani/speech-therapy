@@ -1,10 +1,14 @@
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:speech_therapy/Data/translation_services.dart';
 import 'package:speech_therapy/presentation/widgets/auth_button.dart';
+import 'package:speech_therapy/provider/language_provider.dart';
 import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
@@ -17,6 +21,7 @@ class _NotePadState extends State<NotePad> {
   final messageController = TextEditingController();
   final FlutterTts _flutterTts = FlutterTts();
 
+  final TranslationService translationService = TranslationService();
   @override
   void initState() {
     super.initState();
@@ -28,6 +33,41 @@ class _NotePadState extends State<NotePad> {
     await _flutterTts.speak(text);
   }
 
+  Future<void> _translateText(BuildContext context, String text) async {
+    showDialog(
+      context: context,
+      builder: (context) => Center(child: CircularProgressIndicator()),
+      barrierDismissible: false,
+    );
+
+    try {
+      final filePath = await translationService.translateText(text,context);
+
+      Navigator.of(context).pop(); // Close the loading dialog
+
+      if (filePath != null) {
+        // Play the translated audio using a player package, e.g., audioplayers
+        // Example using the audioplayers package:
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Translation successful! Playing audio...')),
+        );
+        final audioPlayer = AudioPlayer();
+      await audioPlayer.play(DeviceFileSource(filePath ?? ''));
+
+        
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Translation failed.')),
+        );
+      }
+    } catch (e) {
+      Navigator.of(context).pop(); // Close the loading dialog
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.toString()}')),
+      );
+    }
+  }
   @override
   void dispose() {
     _flutterTts.stop();
@@ -36,6 +76,9 @@ class _NotePadState extends State<NotePad> {
 
   @override
   Widget build(BuildContext context) {
+    
+  final LanguageProvider languageProvider =
+      Provider.of<LanguageProvider>(context, listen: false);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Styling.lightBlue,
@@ -113,8 +156,16 @@ class _NotePadState extends State<NotePad> {
                 ),
                 AuthButton(
                   text: "Convert",
-                  func: () async {
-                    await _speak(messageController.text);
+                  // func: () async {
+                  //   await _speak(messageController.text);
+                  // },
+                  func: () {
+                if (languageProvider.language == 'ur-PK') {
+                  _translateText(context, messageController.text);
+                } else {
+                  _speak(messageController.text);
+                }
+              
                   },
                   color: Styling.darkBlue,
                 ),

@@ -18,6 +18,7 @@ class _ProgressTrackState extends State<ProgressTrack> {
   bool _speechEnabled = false;
   String _wordsSpoken = "";
   double _confidenceLevel = 0;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -26,13 +27,22 @@ class _ProgressTrackState extends State<ProgressTrack> {
   }
 
   void initSpeech() async {
+    setState(() {
+      _isLoading = true;
+    });
     _speechEnabled = await _speechToText.initialize();
-    setState(() {});
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   void _startListening() async {
+    setState(() {
+      _isLoading = true;
+    });
     await _speechToText.listen(onResult: _onSpeechResult);
     setState(() {
+      _isLoading = false;
       _confidenceLevel = 0;
     });
   }
@@ -53,69 +63,64 @@ class _ProgressTrackState extends State<ProgressTrack> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Styling.lightBlue,
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.white,
-            )),
-        centerTitle: true,
-        backgroundColor: Styling.darkBlue,
-        title: Text(
-          'English Conversion',
-          style: GoogleFonts.pacifico(
-            textStyle: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 10.h,
           ),
-        ),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(
+          Text(
+            '  Speech Translation',
+            style: GoogleFonts.aBeeZee(
+                textStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.bold)),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Center(
+            child: _isLoading
+                ? CircularProgressIndicator() // Show CircularProgressIndicator when loading
+                : Text(
+                    _speechToText.isListening
+                        ? "listening..."
+                        : _speechEnabled
+                            ? "Tap the microphone to start listening..."
+                            : "Speech not available",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+          ),
+          Expanded(
+            child: Container(
               padding: EdgeInsets.all(16),
               child: Text(
-                _speechToText.isListening
-                    ? "listening..."
-                    : _speechEnabled
-                        ? "Tap the microphone to start listening..."
-                        : "Speech not available",
-                style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(16),
-                child: Text(
-                  _wordsSpoken,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w300,
-                  ),
+                _wordsSpoken,
+                style: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w300,
                 ),
               ),
             ),
-            if (_speechToText.isNotListening && _confidenceLevel > 0)
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 100,
-                ),
+          ),
+          if (_speechToText.isNotListening && _confidenceLevel > 0)
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 100,
+              ),
+              child: Center(
                 child: Text(
                   "Confidence: ${(_confidenceLevel * 100).toStringAsFixed(1)}%",
                   style: TextStyle(
                     fontSize: 30.sp,
-                    fontWeight: FontWeight.w200,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-              )
-          ],
-        ),
+              ),
+            )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _speechToText.isListening ? _stopListening : _startListening,

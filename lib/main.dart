@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
+import 'package:speech_therapy/Data/translation_services.dart';
+import 'package:speech_therapy/domain/translation_repo.dart';
 import 'package:speech_therapy/fruits.dart';
 import 'package:speech_therapy/presentation/Login/login_screen.dart';
+import 'package:speech_therapy/presentation/Progress.dart';
 import 'package:speech_therapy/presentation/Signup/signup_screen.dart';
+import 'package:speech_therapy/presentation/api_url_screen.dart';
 import 'package:speech_therapy/presentation/get_started.dart';
 import 'package:speech_therapy/presentation/homepage.dart';
 import 'package:speech_therapy/presentation/hospital_screen.dart';
@@ -14,15 +19,18 @@ import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/urdu_translation.dart';
 import 'package:speech_therapy/presentation/word_pronun_check.dart';
 import 'package:speech_therapy/presentation/words_screen.dart';
+import 'package:speech_therapy/provider/api_url_provider.dart';
 import 'package:speech_therapy/provider/language_provider.dart';
 import 'package:speech_therapy/routes/routes.dart';
 
 import 'presentation/word_speak.dart';
 
 late Size mq;
-
+// GetIt is a package used for service locator or to manage dependency injection
+GetIt getIt = GetIt.instance;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  servicesLocator(); // Initializing service locator for dependency injection
 
   runApp(const MyApp());
 }
@@ -40,6 +48,10 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (_) => LanguageProvider()),
+            
+            ChangeNotifierProvider(create: (_) => ApiUrlProvider()),
+    
+
           ],
           child: MaterialApp(
             title: 'Speach Buddy',
@@ -47,7 +59,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home:WordSpeak(),
+            home:ApiUrlScreen(),
             onGenerateRoute: Routes.onGenerateRoute,
           ),
         );
@@ -55,4 +67,9 @@ class MyApp extends StatelessWidget {
       // child:
     );
   }
+}
+void servicesLocator() {
+  getIt.registerLazySingleton<TranslationRepository>(() =>
+      TranslationRepositoryImpl(context)); // Registering AuthHttpApiRepository as a lazy singleton for AuthApiRepository
+
 }

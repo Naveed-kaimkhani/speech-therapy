@@ -78,6 +78,7 @@ class _WordCardState extends State<WordCard>
                               MaterialPageRoute(
                                   builder: (context) => WordProgress(
                                         targetWord: widget.word.name,
+                                        imageUrl: widget.word.imageUrl,
                                       )),
                             );
                   //navigate to word pronouce screen

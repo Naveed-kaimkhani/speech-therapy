@@ -1,8 +1,9 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
-import 'package:speech_therapy/network/urdu_translation_api.dart';
+import 'package:speech_therapy/Data/translation_services.dart';
 import 'package:speech_therapy/presentation/widgets/auth_button.dart';
 import 'package:speech_therapy/provider/language_provider.dart';
 import 'package:speech_therapy/style/custom_text_style.dart';
@@ -12,7 +13,7 @@ void showWordDialog(BuildContext context, String url, String word) {
   final FlutterTts _flutterTts = FlutterTts();
   final LanguageProvider languageProvider =
       Provider.of<LanguageProvider>(context, listen: false);
-  final NetworkService networkService = NetworkService();
+  final TranslationService translationService = TranslationService();
 
   Future<void> _speak(String text) async {
     await _flutterTts.setLanguage(languageProvider.language);
@@ -27,18 +28,30 @@ void showWordDialog(BuildContext context, String url, String word) {
       barrierDismissible: false,
     );
 
-    final result = await networkService.translateText(text);
+    try {
+      final filePath = await translationService.translateText(text,context);
 
-    Navigator.of(context).pop(); // Close the loading dialog
+      Navigator.of(context).pop(); // Close the loading dialog
 
-    if (result['success']) {
-      final String audioUrl = result['audioUrl'];
-      // Display success message or play audio
-      // You can implement the audio playback logic here
-    } else {
-      // Display failure message
+      if (filePath != null) {
+        // Play the translated audio using a player package, e.g., audioplayers
+        // Example using the audioplayers package:
+        final audioPlayer = AudioPlayer();
+      await audioPlayer.play(DeviceFileSource(filePath ?? ''));
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Translation successful! Playing audio...')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Translation failed.')),
+        );
+      }
+    } catch (e) {
+      Navigator.of(context).pop(); // Close the loading dialog
+
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(result['message'])),
+        SnackBar(content: Text('Error: ${e.toString()}')),
       );
     }
   }

@@ -2,18 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:speech_therapy/constant/words_list.dart';
 import 'package:speech_therapy/model/word.dart';
 import 'package:speech_therapy/presentation/widgets/word_card.dart';
 import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
 class FruitScreen extends StatelessWidget {
-  final List<Word> words = [
-    Word('Mango', 'assets/images/mango.png'),
-    Word('Banana', 'assets/images/banana.png'),
-    Word('Apple', 'assets/images/apple.png'),
-    Word('Orange', 'assets/images/orange.png'),
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,11 +88,11 @@ class FruitScreen extends StatelessWidget {
                   crossAxisSpacing: 2.w,
                   mainAxisSpacing: 2.h,
                 ),
-                itemCount: words.length,
+                itemCount: fruits.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(4.w),
-                    child: WordCard(word: words[index],listen: true,),
+                    child: WordCard(word: fruits[index],listen: true,),
                   );
                 },
               ),

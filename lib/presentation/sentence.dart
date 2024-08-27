@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:speech_therapy/constant/words_list.dart';
 import 'package:speech_therapy/model/word.dart';
 import 'package:speech_therapy/presentation/widgets/word_card.dart';
 import 'package:speech_therapy/presentation/widgets/word_dialog.dart';
@@ -10,14 +11,7 @@ import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
 class SentenceScreen extends StatelessWidget {
-  final List<Word> words = [
-    Word('I’m walking', 'assets/images/walking.png'),
-    Word('I’m eating', 'assets/images/eat.png'),
-    Word('I’m playing', 'assets/images/playing.png'),
-    Word('I’m Drinking', 'assets/images/drinking.png'),
-    Word('I’m Sleeping', 'assets/images/sleep.png'),
-    Word('I’m Running', 'assets/images/running.png'),
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,11 +90,11 @@ class SentenceScreen extends StatelessWidget {
                   crossAxisSpacing: 2.w,
                   mainAxisSpacing: 2.h,
                 ),
-                itemCount: words.length,
+                itemCount: sentence.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(4.w),
-                    child: WordCard(word: words[index],listen: true,),
+                    child: WordCard(word: sentence[index],listen: true,),
                   );
                 },
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:speech_therapy/constant/words_list.dart';
 import 'package:speech_therapy/model/word.dart';
 import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/widgets/word_card.dart';
@@ -11,13 +12,7 @@ import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
 class HospitalScreen extends StatelessWidget {
-  final List<Word> words = [
-    Word('Fever', 'assets/images/fever.png'),
-    Word('First Aid ', 'assets/images/firstaid.png'),
-    Word('Doctor', 'assets/images/dr.png'),
-    Word('Medicine', 'assets/images/medicine.png'),
-    // Add more Hospitals here
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,11 +91,11 @@ class HospitalScreen extends StatelessWidget {
                   crossAxisSpacing: 2.w,
                   mainAxisSpacing: 2.h,
                 ),
-                itemCount: words.length,
+                itemCount:hospitalWords.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(4.w),
-                    child: WordCard(word: words[index],listen: true,),
+                    child: WordCard(word: hospitalWords[index],listen: true,),
                   );
                 },
               ),

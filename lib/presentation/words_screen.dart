@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:speech_therapy/constant/words_list.dart';
 import 'package:speech_therapy/model/word.dart';
 import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/widgets/word_card.dart';
@@ -11,12 +12,6 @@ import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
 class WordsScreen extends StatelessWidget {
-  final List<Word> words = [
-    Word('Thank you', 'assets/images/thank.png'),
-    Word('Please', 'assets/images/please.png'),
-    Word('Eat', 'assets/images/eat.png'),
-    Word('Sleep', 'assets/images/sleep.png'),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -95,11 +90,11 @@ class WordsScreen extends StatelessWidget {
                   crossAxisSpacing: 2.w,
                   mainAxisSpacing: 2.h,
                 ),
-                itemCount: words.length,
+                itemCount: commonWords.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(4.w),
-                    child: WordCard(word: words[index],listen: true,),
+                    child: WordCard(word: commonWords[index],listen: true,),
                   );
                 },
               ),

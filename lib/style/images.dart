@@ -10,6 +10,8 @@ static const String fruits = 'assets/images/fruits.png';
   static const String sent = 'assets/images/sent.png';
   static const String whale = 'assets/images/whales.json';
   static const String book = 'assets/images/book.json';
+  
+  static const String progress = 'assets/images/progress.json';
 
   static const String bird = "assets/images/bird.png";
 

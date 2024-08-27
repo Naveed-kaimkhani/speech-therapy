@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:speech_therapy/constant/words_list.dart';
 import 'package:speech_therapy/model/word.dart';
 import 'package:speech_therapy/presentation/sentence.dart';
 import 'package:speech_therapy/presentation/widgets/word_card.dart';
@@ -11,13 +12,6 @@ import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
 class WordSpeak extends StatelessWidget {
-  final List<Word> words = [
-    Word('Thank you', 'assets/images/thank.png'),
-    Word('Please', 'assets/images/please.png'),
-    Word('Eat', 'assets/images/eat.png'),
-    Word('Sleep', 'assets/images/sleep.png'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,59 +21,8 @@ class WordSpeak extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipPath(
-              clipper: LowerCurveClipper(),
-              child: Container(
-                // color: Styling.darkBlue, // Adjust color as needed
-                width: double.infinity,
-                height: 130.h,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Styling.darkBlue,
-                      Styling.lightBlue
-                    ], // Define your gradient colors here
-                    begin: Alignment
-                        .topLeft, // Define the start point of the gradient
-                    end: Alignment
-                        .bottomRight, // Define the end point of the gradient
-                  ),
-                ),
-                // Adjust height as needed
-                child: Stack(children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new,
-                        color: Colors.white,
-                      )),
-                  Padding(
-                    padding: EdgeInsets.only(left: 220.w),
-                    child: Lottie.asset(
-                      Images.book,
-                      height: 180.w, // Adjust height as needed
-                      // width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 12.w, top: 40.h),
-                    child: Text(
-                      '  Test Your Learning.',
-                      style: GoogleFonts.lora(
-                          textStyle: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                ]),
-              ),
-            ),
             SizedBox(
-                height: 4.h), // Space between the container and the GridView
+                height: 12.h), // Space between the container and the GridView
             Text(
               '  Speach Recognition',
               style: GoogleFonts.aBeeZee(
@@ -99,7 +42,10 @@ class WordSpeak extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(4.w),
-                    child: WordCard(word: words[index],listen: false,),
+                    child: WordCard(
+                      word: words[index],
+                      listen: false,
+                    ),
                   );
                 },
               ),

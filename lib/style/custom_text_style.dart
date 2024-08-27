@@ -7,11 +7,19 @@ class CustomTextStyle {
   static final font_20 = GoogleFonts.lora(
       textStyle: TextStyle(
           color: Colors.black, fontSize: 20.sp, fontWeight: FontWeight.bold));
-  static final font_18 = TextStyle(
+  static final font_18 = GoogleFonts.lora(
+      textStyle: TextStyle(
     color: Colors.white,
     fontSize: 18.sp,
     fontWeight: FontWeight.w700,
-  );
+  ));
+
+  static final font_16 = GoogleFonts.lora(
+      textStyle: TextStyle(
+    color: Colors.black,
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
+  ));
   static final word_style = GoogleFonts.lora(
       textStyle: TextStyle(
           color: Colors.white, fontSize: 16.sp, fontWeight: FontWeight.bold));
