@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:speech_therapy/style/styling.dart';
@@ -15,10 +14,10 @@ class ProgressTrack extends StatefulWidget {
 class _ProgressTrackState extends State<ProgressTrack> {
   final SpeechToText _speechToText = SpeechToText();
 
-  bool _speechEnabled = false;
-  String _wordsSpoken = "";
-  double _confidenceLevel = 0;
-  bool _isLoading = false;
+  bool _speechEnabled = false; // To track if speech recognition is enabled
+  String _wordsSpoken = ""; // To hold the recognized words
+  double _confidenceLevel = 0; // To hold the confidence level of recognition
+  bool _isLoading = false; // To track loading state
 
   @override
   void initState() {
@@ -26,36 +25,40 @@ class _ProgressTrackState extends State<ProgressTrack> {
     initSpeech();
   }
 
+  // Initialize speech recognition
   void initSpeech() async {
     setState(() {
-      _isLoading = true;
+      _isLoading = true; // Set loading state to true while initializing
     });
-    _speechEnabled = await _speechToText.initialize();
+    _speechEnabled = await _speechToText.initialize(); // Initialize speech recognition
     setState(() {
-      _isLoading = false;
+      _isLoading = false; // Set loading state to false after initialization
     });
   }
 
+  // Start listening to speech
   void _startListening() async {
     setState(() {
-      _isLoading = true;
+      _isLoading = true; // Set loading state to true while starting listening
     });
-    await _speechToText.listen(onResult: _onSpeechResult);
+    await _speechToText.listen(onResult: _onSpeechResult); // Start listening with result callback
     setState(() {
-      _isLoading = false;
-      _confidenceLevel = 0;
+      _isLoading = false; // Set loading state to false after starting listening
+      _confidenceLevel = 0; // Reset confidence level
     });
   }
 
+  // Stop listening to speech
   void _stopListening() async {
-    await _speechToText.stop();
-    setState(() {});
+    await _speechToText.stop(); // Stop listening
+    setState(() {}); // Update state to reflect stopping
   }
 
+  // Handle speech recognition results
   void _onSpeechResult(result) {
     setState(() {
-      _wordsSpoken = "${result.recognizedWords}";
-      _confidenceLevel = result.confidence;
+      _wordsSpoken = "${result.recognizedWords}"; // Update recognized words
+      _confidenceLevel = result.confidence; // Update confidence level
     });
   }
 
@@ -95,11 +98,11 @@ class _ProgressTrackState extends State<ProgressTrack> {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.all(16.w),
               child: Text(
-                _wordsSpoken,
-                style: const TextStyle(
-                  fontSize: 25,
+                _wordsSpoken, // Display recognized words
+                style:  TextStyle(
+                  fontSize: 25.sp,
                   fontWeight: FontWeight.w300,
                 ),
               ),
@@ -107,12 +110,12 @@ class _ProgressTrackState extends State<ProgressTrack> {
           ),
           if (_speechToText.isNotListening && _confidenceLevel > 0)
             Padding(
-              padding: const EdgeInsets.only(
-                bottom: 100,
+              padding:  EdgeInsets.only(
+                bottom: 100.h,
               ),
               child: Center(
                 child: Text(
-                  "Confidence: ${(_confidenceLevel * 100).toStringAsFixed(1)}%",
+                  "Confidence: ${(_confidenceLevel * 100).toStringAsFixed(1)}%", // Display confidence level
                   style: TextStyle(
                     fontSize: 30.sp,
                     fontWeight: FontWeight.w500,

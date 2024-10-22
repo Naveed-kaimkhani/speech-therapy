@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:speech_therapy/main.dart';
 import 'package:speech_therapy/presentation/Progress.dart';
 import 'package:speech_therapy/presentation/homepage.dart';
 import 'package:speech_therapy/presentation/notepad.dart';
@@ -15,7 +16,7 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
   List pages = [
     HomePage(),
-    NotePad(),
+    NotePad(translationRepository: getIt(),),
     TabBarScreen(),
     HomePage(),
   ];

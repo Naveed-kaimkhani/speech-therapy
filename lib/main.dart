@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
-import 'package:speech_therapy/Data/translation_services.dart';
+import 'package:speech_therapy/Data/translation_repository_impl.dart';
 import 'package:speech_therapy/domain/translation_repo.dart';
-import 'package:speech_therapy/fruits.dart';
+import 'package:speech_therapy/presentation/fruits.dart';
 import 'package:speech_therapy/presentation/Login/login_screen.dart';
 import 'package:speech_therapy/presentation/Progress.dart';
 import 'package:speech_therapy/presentation/Signup/signup_screen.dart';
@@ -16,13 +16,13 @@ import 'package:speech_therapy/presentation/navigation_bar.dart';
 import 'package:speech_therapy/presentation/notepad.dart';
 import 'package:speech_therapy/presentation/progress_track.dart';
 import 'package:speech_therapy/presentation/sentence.dart';
+import 'package:speech_therapy/presentation/sindhi_translation.dart';
 import 'package:speech_therapy/presentation/urdu_translation.dart';
 import 'package:speech_therapy/presentation/word_pronun_check.dart';
 import 'package:speech_therapy/presentation/words_screen.dart';
 import 'package:speech_therapy/provider/api_url_provider.dart';
 import 'package:speech_therapy/provider/language_provider.dart';
 import 'package:speech_therapy/routes/routes.dart';
-
 import 'presentation/word_speak.dart';
 
 late Size mq;
@@ -59,7 +59,8 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home:ApiUrlScreen(),
+            home:GetStarted(),
+            // home: AudioPlayerExample(),
             onGenerateRoute: Routes.onGenerateRoute,
           ),
         );
@@ -70,6 +71,6 @@ class MyApp extends StatelessWidget {
 }
 void servicesLocator() {
   getIt.registerLazySingleton<TranslationRepository>(() =>
-      TranslationRepositoryImpl(context)); // Registering AuthHttpApiRepository as a lazy singleton for AuthApiRepository
+      TranslationRepositoryImpl()); // Registering as a lazy singleton for dependency injection
 
 }

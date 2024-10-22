@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
-import 'package:speech_therapy/constant/words_list.dart';
-import 'package:speech_therapy/model/word.dart';
 import 'package:speech_therapy/presentation/progress_track.dart';
-import 'package:speech_therapy/presentation/widgets/word_card.dart';
 import 'package:speech_therapy/presentation/word_speak.dart';
-import 'package:speech_therapy/style/custom_text_style.dart';
-import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
-import 'package:speech_to_text/speech_to_text.dart';
-
 class TabBarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

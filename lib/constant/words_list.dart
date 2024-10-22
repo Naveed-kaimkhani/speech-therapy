@@ -1,63 +1,58 @@
   import 'package:speech_therapy/model/word.dart';
+import 'package:speech_therapy/utils/images_path.dart';
+
+import '../utils/audio_paths.dart';
 
 final List<Word> words = [
-    Word('Thank you', 'assets/images/thank.png'),
-    Word('Please', 'assets/images/please.png'),
-    Word('Eat', 'assets/images/eat.png'),
-    Word('Sleep', 'assets/images/sleep.png'),
-    
-    Word('I’m walking', 'assets/images/walking.png'),
-    Word('I’m eating', 'assets/images/eat.png'),
-    Word('I’m playing', 'assets/images/playing.png'),
-    Word('I’m Drinking', 'assets/images/drinking.png'),
-    Word('I’m Sleeping', 'assets/images/sleep.png'),
-    Word('I’m Running', 'assets/images/running.png'),
-
-    
-    Word('Fever', 'assets/images/fever.png'),
-    Word('First Aid ', 'assets/images/firstaid.png'),
-    Word('Doctor', 'assets/images/dr.png'),
-    Word('Medicine', 'assets/images/medicine.png'),
-
-    
-    Word('Mango', 'assets/images/mango.png'),
-    Word('Banana', 'assets/images/banana.png'),
-    Word('Apple', 'assets/images/apple.png'),
-    Word('Orange', 'assets/images/orange.png'),
-  ];
+  Word('Thank you', ImagePaths.thankYou,AudioPaths.thankYou),
+  Word('Please', ImagePaths.please,AudioPaths.please),
+  Word('Eat', ImagePaths.eat,AudioPaths.eat),
+  Word('Sleep', ImagePaths.sleep,AudioPaths.sleep),
+  
+  Word('I’m walking', ImagePaths.walking,AudioPaths.walking),
+  Word('I’m eating', ImagePaths.eat,AudioPaths.eat),
+  Word('I’m playing', ImagePaths.playing, AudioPaths.playing),
+  Word('I’m Drinking', ImagePaths.drinking, AudioPaths.drinking),
+  Word('I’m Sleeping', ImagePaths.sleep, AudioPaths.sleep),
+  Word('I’m Running', ImagePaths.running, AudioPaths.running),
+  
+  Word('Fever', ImagePaths.fever, AudioPaths.fever),
+  Word('First Aid', ImagePaths.firstAid, AudioPaths.firstAid),
+  Word('Doctor', ImagePaths.doctor, AudioPaths.doctor),
+  Word('Medicine', ImagePaths.medicine, AudioPaths.medicine),
+  
+  Word('Mango', ImagePaths.mango, AudioPaths.mango),
+  Word('Banana', ImagePaths.banana, AudioPaths.banana),
+  Word('Apple', ImagePaths.apple, AudioPaths.apple),
+  Word('Orange', ImagePaths.orange, AudioPaths.orange),
+];
 
 final List<Word> commonWords = [
-    Word('Thank you', 'assets/images/thank.png'),
-    Word('Please', 'assets/images/please.png'),
-    Word('Eat', 'assets/images/eat.png'),
-    Word('Sleep', 'assets/images/sleep.png'),
-    
-  ];
+  Word('Thank you', ImagePaths.thankYou,  AudioPaths.thankYou),
+  Word('Please', ImagePaths.please, AudioPaths.please),
+  Word('Eat', ImagePaths.eat, AudioPaths.eat),
+  Word('Sleep', ImagePaths.sleep, AudioPaths.sleep),
+];
 
-  final List<Word> sentence = [
+final List<Word> sentence = [
+  Word('I’m walking', ImagePaths.walking, AudioPaths.walking),
+  Word('I’m eating', ImagePaths.eat,  AudioPaths.eat),
+  Word('I’m playing', ImagePaths.playing, AudioPaths.playing),
+  Word('I’m Drinking', ImagePaths.drinking, AudioPaths.drinking),
+  Word('I’m Sleeping', ImagePaths.sleep,  AudioPaths.sleep),
+  Word('I’m Running', ImagePaths.running, AudioPaths.running),
+];
 
-    Word('I’m walking', 'assets/images/walking.png'),
-    Word('I’m eating', 'assets/images/eat.png'),
-    Word('I’m playing', 'assets/images/playing.png'),
-    Word('I’m Drinking', 'assets/images/drinking.png'),
-    Word('I’m Sleeping', 'assets/images/sleep.png'),
-    Word('I’m Running', 'assets/images/running.png'),
+final List<Word> hospitalWords = [
+  Word('Fever', ImagePaths.fever, AudioPaths.fever),
+  Word('First Aid', ImagePaths.firstAid, AudioPaths.firstAid),
+  Word('Doctor', ImagePaths.doctor, AudioPaths.doctor),
+  Word('Medicine', ImagePaths.medicine, AudioPaths.medicine),
+];
 
-  ];
-  final List<Word> hospitalWords = [
-    Word('Fever', 'assets/images/fever.png'),
-    Word('First Aid ', 'assets/images/firstaid.png'),
-    Word('Doctor', 'assets/images/dr.png'),
-    Word('Medicine', 'assets/images/medicine.png'),
-
-    
-  ];
-
-  final List<Word> fruits = [
-
-    
-    Word('Mango', 'assets/images/mango.png'),
-    Word('Banana', 'assets/images/banana.png'),
-    Word('Apple', 'assets/images/apple.png'),
-    Word('Orange', 'assets/images/orange.png'),
-  ];
+final List<Word> fruits = [
+  Word('Mango', ImagePaths.mango, AudioPaths.mango),
+  Word('Banana', ImagePaths.banana, AudioPaths.banana),
+  Word('Apple', ImagePaths.apple, AudioPaths.apple),
+  Word('Orange', ImagePaths.orange, AudioPaths.orange),
+];

@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:speech_therapy/main.dart';
 import 'package:speech_therapy/model/word.dart';
-import 'package:speech_therapy/presentation/sentence.dart';
+import 'package:speech_therapy/presentation/widgets/clipper.dart';
 import 'package:speech_therapy/presentation/widgets/word_dialog.dart';
-import 'package:speech_therapy/presentation/widgets/word_speak_dialogue.dart';
 import 'package:speech_therapy/presentation/word_pronun_check.dart';
 import 'package:speech_therapy/style/custom_text_style.dart';
 import 'package:speech_therapy/style/styling.dart';
@@ -68,7 +68,7 @@ class _WordCardState extends State<WordCard>
                 onTap: () {
                 if (widget.listen) {
                     showWordDialog(
-                      context, widget.word.imageUrl, widget.word.name);
+                      context, widget.word,getIt());
                 
                 }else{
                   // showSpeakDialogue(context,widget.word.name);

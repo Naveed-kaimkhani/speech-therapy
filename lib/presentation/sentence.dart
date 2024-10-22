@@ -3,15 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:speech_therapy/constant/words_list.dart';
-import 'package:speech_therapy/model/word.dart';
 import 'package:speech_therapy/presentation/widgets/word_card.dart';
-import 'package:speech_therapy/presentation/widgets/word_dialog.dart';
-import 'package:speech_therapy/style/custom_text_style.dart';
 import 'package:speech_therapy/style/images.dart';
 import 'package:speech_therapy/style/styling.dart';
 
-class SentenceScreen extends StatelessWidget {
+import 'widgets/clipper.dart';
 
+class SentenceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -22,67 +20,74 @@ class SentenceScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Header section with curved bottom edge
             ClipPath(
               clipper: LowerCurveClipper(),
               child: Container(
-                // color: Styling.darkBlue, // Adjust color as needed
                 width: double.infinity,
                 height: 130.h,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Styling.darkBlue,
-                      Styling.lightBlue
-                    ], // Define your gradient colors here
-                    begin: Alignment
-                        .topLeft, // Define the start point of the gradient
-                    end: Alignment
-                        .bottomRight, // Define the end point of the gradient
+                      Styling.lightBlue,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
                 ),
-                // Adjust height as needed
-                child: Stack(children: [
-                  IconButton(
+                child: Stack(
+                  children: [
+                    // Back button to navigate to the previous screen
+                    IconButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
                       icon: const Icon(
                         Icons.arrow_back_ios_new,
                         color: Colors.white,
-                      )),
-                  Padding(
-                    padding: EdgeInsets.only(left: 260.w),
-                    child: Lottie.asset(
-                      Images.book,
-                      height: 180.w, // Adjust height as needed
-                      // width: double.infinity,
-                      fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 12.w, top: 40.h),
-                    child: Text(
-                      '  Success in Learning Sentences Comes from \n  Daily Small Efforts.',
-                      style: GoogleFonts.lora(
+                    // Lottie animation on the right side of the header
+                    Padding(
+                      padding: EdgeInsets.only(left: 260.w),
+                      child: Lottie.asset(
+                        Images.book,
+                        height: 180.w,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    // Title text in the header
+                    Padding(
+                      padding: EdgeInsets.only(left: 12.w, top: 40.h),
+                      child: Text(
+                        '  Success in Learning Sentences Comes from \n  Daily Small Efforts.',
+                        style: GoogleFonts.lora(
                           textStyle: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.bold)),
+                            color: Colors.white,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ]),
+                  ],
+                ),
               ),
             ),
-            SizedBox(
-                height: 4.h), // Space between the container and the GridView
+            SizedBox(height: 4.h), // Space between the header and the GridView
+            // Title for the GridView section
             Text(
               '  Explore Sentences',
               style: GoogleFonts.aBeeZee(
-                  textStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22.sp,
-                      fontWeight: FontWeight.bold)),
+                textStyle: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
+            // GridView to display a list of sentences
             Expanded(
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -90,11 +95,14 @@ class SentenceScreen extends StatelessWidget {
                   crossAxisSpacing: 2.w,
                   mainAxisSpacing: 2.h,
                 ),
-                itemCount: sentence.length,
+                itemCount: sentence.length, // Number of items in the GridView
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(4.w),
-                    child: WordCard(word: sentence[index],listen: true,),
+                    child: WordCard(
+                      word: sentence[index],
+                      listen: true, // Indicates that this card should have a listening feature
+                    ),
                   );
                 },
               ),
@@ -106,51 +114,4 @@ class SentenceScreen extends StatelessWidget {
   }
 }
 
-class UpperCurveClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height - 20.h);
-    var firstControlPoint = Offset(size.width / 4, size.height);
-    var firstEndPoint = Offset(size.width / 2, size.height - 20.h);
-    var secondControlPoint = Offset(size.width * 3 / 4, size.height - 40.h);
-    var secondEndPoint = Offset(size.width, size.height - 20.h);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
 
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
-
-class LowerCurveClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height - 20.h);
-    var firstControlPoint = Offset(size.width / 4, size.height - 40.h);
-    var firstEndPoint = Offset(size.width / 2, size.height - 20.h);
-    var secondControlPoint = Offset(size.width * 3 / 4, size.height);
-    var secondEndPoint = Offset(size.width, size.height - 20.h);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
